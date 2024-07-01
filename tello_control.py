@@ -15,8 +15,7 @@ class FrontEnd(object):
             - A and D: Counter clockwise and clockwise rotations (yaw)
             - W and S: Up and down.
     """
-    def __init__(self, image_queue):
-        self.image_queue = image_queue
+    def __init__(self):
         pygame.init()
 
         pygame.display.set_caption("Tello video stream")
@@ -80,7 +79,7 @@ class FrontEnd(object):
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 self.save_image(frame)
                 self.last_process_time = current_time
-                self.image_queue.put(frame)
+        
 
             text = "Battery: {}%".format(self.tello.get_battery())
             cv2.putText(frame, text, (5, 720 - 5),
